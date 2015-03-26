@@ -1,2 +1,3 @@
 baseurl: /merpc
 highlighter: pygments
+exclude: ['platforms', 'plugins']

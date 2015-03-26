@@ -14,6 +14,8 @@ layout: oitofelix-homepage
 <div id="markdown" markdown="1">
 ## MerpC: Mobile ERP Client
 
+![MerpC logo]({{ page.base_local }}{{ site.baseurl }}/merpc-logo.png)
+
 __MerpC__ is the __Mobile ERP Client__ --- a Cordova-based thin client for
 ERP systems.  I'm developing it for _Consultoria Online_ which is
 planning to deploy it for _Penergetic_.
@@ -21,7 +23,7 @@ planning to deploy it for _Penergetic_.
 - [Browser build](browser/)
 - [Android build](merpc.apk)
 - [VCS repository](https://github.com/oitofelix/merpc/)
-
+- [SVG logo](merpc-logo.svg)
 
 <div style="font-size: small; text-align: right; list-style: none;" markdown="1">
 [_Consultoria Online_](http://www.consultoriaonline.info/) is a

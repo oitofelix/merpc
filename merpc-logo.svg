@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 744.09448819 1052.3622047"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.5 r10040"
+   sodipodi:docname="merpc-log.svg">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="2.3705326"
+     inkscape:cx="357.28952"
+     inkscape:cy="536.80689"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     inkscape:window-width="1268"
+     inkscape:window-height="693"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:snap-bbox="false">
+    <inkscape:grid
+       type="xygrid"
+       id="grid3407" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot3223"
+       style="fill:black;stroke:none;stroke-opacity:1;stroke-width:1px;stroke-linejoin:miter;stroke-linecap:butt;fill-opacity:1;font-family:Sans;font-style:normal;font-weight:normal;font-size:40px;line-height:125%;letter-spacing:0px;word-spacing:0px"><flowRegion
+         id="flowRegion3225"><rect
+           id="rect3227"
+           width="721.2489"
+           height="383.85797"
+           x="0"
+           y="323.03204" /></flowRegion><flowPara
+         id="flowPara3229"></flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot3231"
+       style="fill:black;stroke:none;stroke-opacity:1;stroke-width:1px;stroke-linejoin:miter;stroke-linecap:butt;fill-opacity:1;font-family:Sans;font-style:normal;font-weight:normal;font-size:40px;line-height:125%;letter-spacing:0px;word-spacing:0px"><flowRegion
+         id="flowRegion3233"><rect
+           id="rect3235"
+           width="731.35046"
+           height="404.061"
+           x="-4.0406103"
+           y="312.93051" /></flowRegion><flowPara
+         id="flowPara3237"></flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot3257"
+       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffff00;fill-opacity:1;stroke:none;font-family:Sans"
+       transform="matrix(4.6347744,0,0,4.7785863,-218.78811,-1605.7747)"><flowRegion
+         id="flowRegion3259"><rect
+           id="rect3261"
+           width="52.527931"
+           height="74.751289"
+           x="70.710678"
+           y="417.98639"
+           style="fill:#ffff00" /></flowRegion><flowPara
+         id="flowPara3263">M</flowPara></flowRoot>    <text
+       xml:space="preserve"
+       style="font-size:99.41268158px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#0000ff;fill-opacity:1;stroke:none;font-family:Sans"
+       x="273.20956"
+       y="515.547"
+       id="text3265"
+       sodipodi:linespacing="125%"
+       transform="scale(0.93334951,1.07141)"><tspan
+         sodipodi:role="line"
+         id="tspan3267"
+         x="273.20956"
+         y="515.547">ERP</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:215.09416199px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none;font-family:Sans"
+       x="375.68445"
+       y="666.55872"
+       id="text3269"
+       sodipodi:linespacing="125%"
+       transform="scale(1.1445776,0.87368476)"><tspan
+         sodipodi:role="line"
+         id="tspan3271"
+         x="375.68445"
+         y="666.55872">C</tspan></text>
+  </g>
+</svg>
