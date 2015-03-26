@@ -2,7 +2,7 @@
 title: oitofelix - MerpC&#58; Mobile ERP Client
 description: >
   MerpC is the Mobile ERP Client --- a Cordova-based thin client for
-  ERP systems.  I'm developing it for _Consultoria Online_.
+  ERP systems that I'm developing for Consultoria Online.
 tags: >
   Cordova, HTML, CSS, JavaScript, Mobile, Web, ERP
 license: CC BY-SA 4.0
@@ -16,7 +16,7 @@ layout: oitofelix-homepage
 ![MerpC logo]({{ page.base_local }}{{ site.baseurl }}/merpc-logo.png)
 
 __MerpC__ is the __Mobile ERP Client__ --- a Cordova-based thin client
-for ERP systems.  I'm developing it for _Consultoria Online_.
+for ERP systems that I'm developing for _Consultoria Online_.
 
 - [Browser build](browser/)
 - [Android build](merpc.apk)
