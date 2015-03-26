@@ -1,0 +1,65 @@
+<form>
+  <h1 style="width: 100%">RAC: Relatório de Atendimento ao Cliente</h1>
+
+  <!-- Dados do Processo -->
+  <fieldset>
+    <legend>Dados do Processo</legend>
+    <label style="width: 50%">Data de Abertura <input type="date" /></label>
+    <label style="width: 50%">Nº RAC<input type="number" /></label>
+    <label style="width: 100%">Representante <input id="representante" type="text" disabled="disabled" /></label>
+  </fieldset>
+
+  <!-- Dados do Cliente -->
+  <fieldset>
+    <legend>Dados do Cliente</legend>
+    <label style="width: 100%">Cliente<input type="text" /></label>
+    <label style="width: 50%">Contato<input type="text" /></label>
+    <label style="width: 50%">Telefone<input type="tel" /></label>
+    <label style="width: 50%">Município<input type="text" /></label>
+    <label style="width: 50%">UF<input type="text" /></label>
+    <label style="width: 100%">E-mail<input type="email" /></label>
+  </fieldset>
+
+  <!-- Dados do Produto -->
+  <fieldset>
+    <legend>Dados do Produto</legend>
+    <label style="width: 100%">Produto<input type="text" /></label>
+    <label style="width: 50%">Nº pedido<input type="text" /></label>
+    <label style="width: 50%">Nota Fiscal<input type="number" /></label>
+    <label style="width: 50%">Nº lote<input type="number" /></label>
+    <label style="width: 50%">Data<input type="date" /></label>
+    <label style="width: 50%">Qtd entregue<input type="number" /></label>
+    <label style="width: 50%">Qtd problema<input type="number" /></label>
+  </fieldset>
+
+  <!-- Dados da Ocorrência -->
+  <fieldset>
+    <legend>Dados da Ocorrência</legend>
+    <label style="width: 100%">Informar não conformidade
+      <input type="text" /></label>
+    <label style="width: 100%">Local de armazenagem <input type="text"/></label>
+    <p class="c">O problema prejudicou o relacionamento com o cliente?
+      <input type="radio" name="relacionamento" value="false" checked="checked" />Não
+      <input type="radio" name="relacionamento" value="true"/>Sim</p>
+    <label style="width: 100%">
+      <textarea placeholder="Descreva detalhadamente o problema"></textarea>
+    </label>
+    <label style="width: 100%">
+      <textarea placeholder="Providências já tomadas no processo"></textarea>
+    </label>
+    <label style="width: 100%">
+      <textarea placeholder="Quais as expectativas do cliente"></textarea>
+    </label>
+    <label style="width: 100%">
+      <textarea placeholder="Posição e recomendações para o processo"></textarea>
+    </label>
+    <label style="width: 100%">Avaliação de satisfação do cliente após
+      o atendimento<input type="number" min="0" max="10" value="5" /></label>
+  </fieldset>
+  <label style="width: 20%">
+    <input type="button" value="Enviar" />
+  </label>
+  <label class="r" style="width: 20%">
+    <input type="button" value="Sair" onclick="loadForm ('login');"/>
+  </label>
+</form>

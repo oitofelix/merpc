@@ -1,0 +1,58 @@
+html {
+    margin-bottom: 20px;
+}
+
+body {
+    background-image: url(../img/background.jpg);
+    background-repeat: repeat;
+}
+
+h1 {
+    text-align: center;
+    color: beige;
+    background-color: darkblue;
+}
+
+#logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto; 
+
+    background-color: navy;
+    border: 4px solid blue;
+    padding: 8px;
+}
+
+form > *, form > fieldset > * {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+}
+
+label, p {
+    padding-left: 4px;
+    padding-right: 4px;
+    padding-bottom: 4px;
+    padding-top: 4px;
+    float: left;
+}
+
+p {
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+
+label * {
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.r {
+    float: right;
+}
+
+.c {
+    float: none;
+    clear: both;
+}

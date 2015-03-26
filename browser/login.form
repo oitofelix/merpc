@@ -1,0 +1,15 @@
+<form>
+  <h1 style="width: 100%">Mobile ERP Client</h1>
+  <label style="width: 100%"><select id="ambiente">
+      <option value="rdv">RDV: Relatório de Despesas de Viagens</option>
+      <option value="rep">REP: Relatório de Eventos da Empresa</option>
+      <option value="rac">RAC: Relatório de Atendimento ao Cliente</option>
+      <option value="pv">PV: Pedido de Vendas</option>
+  </select></label>
+  <label style="width: 100%"><input type="text" placeholder="Usuário" /></label>
+  <label style="width: 100%"><input type="password" placeholder="Senha" /></label>
+  <label class="c" style="width: 25%">
+    <input id="enter" type="button" value="Entrar" 
+	   onclick="login ();" />
+  </label>
+</form>
