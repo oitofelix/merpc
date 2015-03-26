@@ -26,7 +26,7 @@ for ERP systems.  I'm developing it for _Consultoria Online_.
 <div style="font-size: small; text-align: right; list-style: none;" markdown="1">
 [_Consultoria Online_](http://www.consultoriaonline.info/) is a
 consultancy specialized in providing support and customization for an
-widely used ERP system;
+widely employed ERP system
 </div>
 
 
