@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.oitofelix.merpc" version="0.0.1"
+	xmlns="http://www.w3.org/ns/widgets"
+	xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>MerpC</name>
+    <description>
+        MerpC: Mobile ERP Client
+    </description>
+    <author email="oitofelix@gnu.org" href="http://oitofelix.github.io/">
+      Bruno Félix Rezende Ribeiro (oitofelix)
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+    <icon src="www/img/logo.png" />
+</widget>
