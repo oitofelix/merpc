@@ -1,0 +1,11 @@
+<form>
+  <h1 style="width: 100%">Mobile ERP Client</h1>
+  <label style="width: 100%"><input id="user" type="text" placeholder="Usuário" /></label>
+  <label style="width: 100%"><input id="password" type="password" placeholder="Senha" /></label>
+  <label style="min-width: 20%">
+    <input id="enter" type="button" value="Entrar" />
+  </label>
+  <label style= "min-width:20%" class="r">
+    <input id="cfg" type="button" value="Configurações" />
+  </label>
+</form>
