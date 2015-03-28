@@ -1,0 +1,46 @@
+<html>
+  <head>
+    <title>SOAP JavaScript Client Test</title>
+    <script type="text/javascript">
+     function soap() {
+         var xmlhttp = new XMLHttpRequest();
+         xmlhttp.open('POST', 'http://189.112.89.115:8585/ws/WSCPEDIDO.apw', true);
+
+         // build SOAP request
+         var sr =
+         '<?xml version="1.0" encoding="utf-8"?>' +
+         '<soap:Envelope ' +
+         'xmlns:xsd="http://www.w3.org/2001/XMLSchema" ' +
+         'xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">' +
+         '<soap:Body>' +
+	 '<LISTAR>' +
+	 '<APEDIDO><ITENS><STITEM><XC6_ITEM>*</XC6_ITEM></STITEM><STITEM></STITEM></ITENS></APEDIDO>' +
+	 '</LISTAR>' +
+         '</soap:Body>' +
+         '</soap:Envelope>';
+
+         xmlhttp.onreadystatechange = function () {
+             if (xmlhttp.readyState == 4) {
+                 if (xmlhttp.status == 200) {
+
+                     alert('done use firebug to see response');
+                 }
+             }
+         }
+         // Send the POST request
+         xmlhttp.setRequestHeader('Content-Type', 'text/xml');
+         xmlhttp.setRequestHeader('SOAPAction', 'http://189.112.89.115:8585/LISTAR');
+         xmlhttp.send(sr);
+         // send request
+         // ...
+     }
+    </script>
+  </head>
+  <body>
+    <form name="Demo" action="" method="post">
+      <div>
+        <input type="button" value="Soap" onclick="soap();" />
+      </div>
+    </form>
+  </body>
+</html>
