@@ -87,12 +87,13 @@ form.login = {
           alert ('Usuário ou senha inválidos');
           return;
 	}
-      }
 
-      document.getElementById("userID").style.display = "block";
-      document.getElementById("empresa").value = "Empresa: " + loginInfo.empresa;
-      document.getElementById("representante").value =
-	"Representante: " + loginInfo.representante;
+	document.getElementById("userID").style.display = "block";
+	document.getElementById("empresa").value = "Empresa: " + loginInfo.empresa;
+	document.getElementById("representante").value =
+	  "Representante: " + loginInfo.representante;
+
+      }
 
       form.environment.load ();
 

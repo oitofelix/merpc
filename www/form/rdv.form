@@ -1,35 +1,51 @@
 <form>
   <h1 style="width: 100%">RDV: Relatório de Despesas de Viagens</h1>
-  <label style="width: 50%">Veículo<input id="veiculo" type="text" /></label>
-  <label style="width: 50%">Placa<input id="placa" type="text" /></label>
-  <label style="width: 50%">Início<input type="date" /></label>
-  <label style="width: 50%">Fim<input type="date"></label>
-  <label style="width: 100%">
-    <select>
-      <option>Hospedagem</option>
-      <option>Veículos</option>
-      <option>Alimentação</option>
+  <label style="width: 100%">Tipo de Despesa
+    <select id="tipoDespesa">
+      <option></option>
+      <option value="R">Reembolso</option>
+      <option value="C">Cartão Corporativo</option>
+      <option value="F">Fundo Fixo</option>
+      <option value="V">Ajuda de Custo de Veículo</option>
     </select>
   </label>
-  <label style="width: 100%">Data<input type="date" /></label>
-  <label style="width: 100%">NF/Cupom<input type="number" /></label>
-  <label style="width: 50%">Qtd<input type="number" /></label>
-  <label style="width: 50%">Valor<input type="number" /></label>
-  <label style="width: 100%">
+  <fieldset id="periodo">
+    <legend>Período</legend>
+    <label style="width: 50%">Início<input type="date" /></label>
+    <label style="width: 50%">Fim<input type="date"></label>
+  </fieldset>
+  <fieldset id="NFCupom">
+    <legend>NF/Cupom</legend>
+    <label style="width: 50%">Nº Documento<input type="number" /></label>
+    <label style="width: 50%">Valor<input type="number" /></label>
+    <label style="width: 50%">Data<input id="data" type="date" /></label>
+    <label style="width: 50%">Quantidade<input type="number" /></label>
+  </fieldset>
+  <label id="naturezaDespesa" style="width: 100%">Natureza da Despesa
+    <select>
+	<option>Alimentação</option>
+	<option>Hospedagem</option>
+      </optgroup>
+      <optgroup label="Transporte">
+	<option>Veículo</option>
+	<option>Pedágio</option>
+	<option>Combustível</option>
+      </optgroup>
+      <option>Outros...</option>
+    </select>
+  </label>
+  <label id="observacoes" style="width: 100%">Observações
     <textarea placeholder="Obs."></textarea>
   </label>
-  <label style="width: 100%">
-    <select>
-      <option>Fundo Fixo Mensal</option>
-      <option>Cartão Corporativo</option>
-      <option>Ajuda de Custo de Veículo</option>
-      <option>Valor Fixo Mensal</option>
-    </select>
-  </label>
+  <fieldset id="veiculo">
+    <legend>Veículo</legend>
+    <label style="width: 50%">Tipo<input id="veiculo" type="text" /></label>
+    <label style="width: 50%">Placa<input id="placa" type="text" /></label>
+  </fieldset>
   <label style="width: 20%">
-    <input type="button" value="Enviar" />
+    <input id="incluir" type="button" value="Incluir" />
   </label>
-  <label id="exit" class="r" style="width: 20%">
-    <input type="button" value="Sair" />
+  <label class="r" style="width: 20%">
+    <input id="sair" type="button" value="Sair" />
   </label>
 </form>
