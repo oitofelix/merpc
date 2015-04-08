@@ -5,6 +5,9 @@ form.login = {
   load: function () {
     document.getElementById ('form').innerHTML = this.html;
 
+    // userID
+    document.getElementById("userID").style.display = "none";
+    
     // user
     this.user.node = document.getElementById ('user');
     this.user.node.oninput = this.user.oninput;
@@ -73,18 +76,23 @@ form.login = {
 	  || form.login.password.node.value != 'debug')
       {
 	try {
-	  var valid = ws.WSCUSUARIO.VALIDAR (form.login.user.node.value, form.login.password.node.value)
+	  var loginInfo = ws.login.login (form.login.user.node.value, form.login.password.node.value)
 	}
 	catch (e) {
 	  alert (e);
 	  return;
 	}
 
-	if (! valid) {
+	if (! loginInfo) {
           alert ('Usuário ou senha inválidos');
           return;
 	}
       }
+
+      document.getElementById("userID").style.display = "block";
+      document.getElementById("empresa").value = "Empresa: " + loginInfo.empresa;
+      document.getElementById("representante").value =
+	"Representante: " + loginInfo.representante;
 
       form.environment.load ();
 

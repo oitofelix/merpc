@@ -10,16 +10,24 @@ h1 {
     text-align: center;
     color: beige;
     background-color: darkgreen;
+    float: left;
+    margin-top: 5px;
+}
+
+#userID {
+    display: none;
 }
 
 #logo {
     display: block;
     margin-left: auto;
     margin-right: auto; 
+    margin-bottom: 20px;
 
     background-color: darkgreen;
     border: 4px solid green;
     padding: 8px;
+    margin-bottom: 5px;
 }
 
 form > *, form > fieldset > * {

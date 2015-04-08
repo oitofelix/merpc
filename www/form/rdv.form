@@ -1,9 +1,7 @@
 <form>
   <h1 style="width: 100%">RDV: Relatório de Despesas de Viagens</h1>
-  <label style="width: 100%">Empresa<input id="empresa" type="text" disabled="disabled" /></label>
-  <label style="width: 100%">Representante<input id="representante" type="text" disabled="disabled" /></label>
-  <label style="width: 50%">Veículo<input id="veiculo" type="text" disabled="disabled" /></label>
-  <label style="width: 50%">Placa<input id="placa" type="text" disabled="disabled" /></label>
+  <label style="width: 50%">Veículo<input id="veiculo" type="text" /></label>
+  <label style="width: 50%">Placa<input id="placa" type="text" /></label>
   <label style="width: 50%">Início<input type="date" /></label>
   <label style="width: 50%">Fim<input type="date"></label>
   <label style="width: 100%">

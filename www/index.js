@@ -11,7 +11,7 @@ for (var i = 0; i < form.list.length; i++)
 
 ws = {
   // Web Services list
-  list: ['WSCUSUARIO'],
+  list: ['login'],
 };
 
 // Load web services
