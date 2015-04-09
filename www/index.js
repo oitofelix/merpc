@@ -46,3 +46,8 @@ function sendSoapRequest (service, method, soapRequest) {
   if (request.status === 200 ) return request.responseText;
   else throw new Error (request.statusText);
 }
+
+function dateRelative (date, monthOffset, day) {
+  return new Date (date.getFullYear (), date.getMonth () + monthOffset, day)
+    .toISOString ().substr (0, 10); 
+}
