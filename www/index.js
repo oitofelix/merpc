@@ -9,6 +9,15 @@ form = {
 for (var i = 0; i < form.list.length; i++)
   loadJS ('form/' + form.list[i] + '.js');
 
+widget = {
+  // Widgets list
+  list: ['date'],
+};
+
+// Load widgets
+for (var i = 0; i < widget.list.length; i++)
+  loadJS ('widget/' + widget.list[i] + '.js');
+
 ws = {
   // Web Services list
   list: ['login'],
@@ -28,6 +37,13 @@ function loadJS (url) {
   document.head.appendChild (script);
 }
 
+function loadCSS (url) {
+  var stylesheet = document.createElement ('link');
+  stylesheet.setAttribute ('rel', 'stylesheet');
+  stylesheet.setAttribute ('href', url);
+  document.head.appendChild (stylesheet);
+}
+
 function loadForm (name) {
   var request = new XMLHttpRequest ();
   request.open ('GET', 'form/' + name + '.form', false);
@@ -45,9 +61,4 @@ function sendSoapRequest (service, method, soapRequest) {
   request.send(soapRequest);
   if (request.status === 200 ) return request.responseText;
   else throw new Error (request.statusText);
-}
-
-function dateRelative (date, monthOffset, day) {
-  return new Date (date.getFullYear (), date.getMonth () + monthOffset, day)
-    .toISOString ().substr (0, 10); 
 }

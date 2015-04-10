@@ -11,17 +11,33 @@
   </label>
   <fieldset id="periodo">
     <legend>Período</legend>
-    <label style="width: 50%">Início
-      <input id="inicio" disabled="disabled" type="date" /></label>
-    <label style="width: 50%">Fim
-      <input id="fim" disabled="disabled"type="date"></label>
+    <!-- <label style="width: 50%">Início -->
+    <!--   <input id="inicio" disabled="disabled" type="date" /></label> -->
+
+    <fieldset id="inicio" class="date l" style="width: 49%">
+      <legend>Início</legend>
+    </fieldset>
+
+    <!-- <label style="width: 50%">Fim -->
+    <!--   <input id="fim" disabled="disabled"type="date"></label> -->
+    <fieldset id="fim" class="date r" style="width: 49%">
+      <legend>Fim</legend>
+    </fieldset>
+
   </fieldset>
   <fieldset id="NFCupom">
     <legend>NF/Cupom</legend>
-    <label style="width: 50%">Nº Documento<input type="number" /></label>
-    <label style="width: 50%">Valor<input type="number" /></label>
-    <label style="width: 50%">Data<input id="data" type="date" /></label>
-    <label style="width: 50%">Quantidade<input type="number" /></label>
+    <!-- <label style="width: 50%">Data<input id="data" type="date" /></label> -->
+    <fieldset id="data" class="date l" style="width: 49%">
+      <legend>Data</legend>
+    </fieldset>
+    <label style="width: 50%" class="r">Nº Documento
+      <input id="NDocumento" type="text" maxlength="9" pattern="\d+"
+	     required="required" /></label>
+    <label style="width: 50%">Valor
+      <input id="valor" type="number" step="0.01" /></label>
+    <label style="width: 50%">Quantidade
+      <input id="quantidade" type="number" step="0.0001" /></label>
   </fieldset>
   <label id="naturezaDespesa" style="width: 100%">Natureza da Despesa
     <select>
@@ -37,7 +53,7 @@
     </select>
   </label>
   <label id="observacoes" style="width: 100%">Observações
-    <textarea placeholder="Obs."></textarea>
+    <textarea placeholder="Obs." spellcheck="true"></textarea>
   </label>
   <fieldset id="veiculo">
     <legend>Veículo</legend>

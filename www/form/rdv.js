@@ -4,6 +4,7 @@ form.rdv = {
 
   load: function () {
     document.getElementById ('form').innerHTML = this.html;
+    widget.date.load ();
 
     // tipoDespesa
     this.tipoDespesa.node = document.getElementById ('tipoDespesa');
@@ -15,7 +16,9 @@ form.rdv = {
       this.periodo.node.style.display = "none";
 
       this.inicio.node = document.getElementById ('inicio');
+      this.inicio.node.disabled = true;
       this.fim.node = document.getElementById ('fim');
+      this.fim.node.disabled = true;
     }
     // NFCupom
     {
@@ -25,7 +28,21 @@ form.rdv = {
       // data
       this.data.node = document.getElementById ('data');
       this.data.node.onchange = this.data.onchange;
-      this.data.node.value = new Date ().toISOString ().substr (0, 10);
+      this.data.node.value = new Date ();
+
+      // NDocumento
+      this.NDocumento.node = document.getElementById ('NDocumento');
+      this.NDocumento.node.onchange = this.NDocumento.onchange;
+
+      // valor
+      this.valor.node = document.getElementById ('valor');
+      this.valor.node.onchange = this.valor.onchange;
+      this.valor.node.onchange ();
+
+      // quantidade
+      this.quantidade.node = document.getElementById ('quantidade');
+      this.quantidade.node.onchange = this.quantidade.onchange;
+      this.quantidade.node.onchange ();
     }
     
     // naturezaDespesa
@@ -55,6 +72,7 @@ form.rdv = {
       if (this.value) {
 	form.rdv.periodo.node.style.display = "block";
 	form.rdv.NFCupom.node.style.display = "block";
+	form.rdv.NDocumento.node.focus ();
 	form.rdv.naturezaDespesa.node.style.display = "block";
 	form.rdv.observacoes.node.style.display = "block";
 	if (this.value == "V") form.rdv.veiculo.node.style.display = "block";
@@ -74,33 +92,49 @@ form.rdv = {
   },
 
   inicio: {
-    
   },
 
   fim: {
-    
   },
 
   NFCupom: {
   },
 
+  NDocumento: {
+    onchange: function () {
+      this.value = this.value || "0"
+      this.value = ("000000000" + this.value).slice (-9)
+    },
+  },
+
+  valor: {
+    onchange: function () {
+      this.value = this.value || "0";
+      this.value = parseFloat(this.value).toFixed(2);
+    },
+  },
+
+  quantidade: {
+    onchange: function () {
+      this.value = this.value || "0";
+      this.value = parseFloat(this.value).toFixed(4);
+    },
+  },
+  
   data: {
     onchange: function () {
-      var date =
-	  new Date (Date.parse (form.rdv.data.node.value)
-		    + new Date ().getTimezoneOffset() * 60 * 1000);
       if (form.rdv.tipoDespesa.node.value == "C"
 	  || form.rdv.tipoDespesa.node.value == "F") {
-	if (date.getDate () < 21) {
-	  form.rdv.inicio.node.value = dateRelative (date, -1, 21);
-	  form.rdv.fim.node.value = dateRelative (date, 0, 20);
+	if (form.rdv.data.node.value.getDate () < 21) {
+	  form.rdv.inicio.node.value = form.rdv.data.node.relative (-1, 21);
+	  form.rdv.fim.node.value = form.rdv.data.node.relative (0, 20);
 	} else {
-	  form.rdv.inicio.node.value = dateRelative (date, 0, 21);
-	  form.rdv.fim.node.value = dateRelative (date, 1, 20);  
+	  form.rdv.inicio.node.value = form.rdv.data.node.relative (0, 21);
+	  form.rdv.fim.node.value = form.rdv.data.node.relative (1, 20);  
 	}
       } else {
-	form.rdv.inicio.node.value = dateRelative (date, 0, 1);
-	form.rdv.fim.node.value = dateRelative (date, 1, 0);
+	form.rdv.inicio.node.value = form.rdv.data.node.relative (0, 1);
+	form.rdv.fim.node.value = form.rdv.data.node.relative (1, 0);
       }     
     },
   },

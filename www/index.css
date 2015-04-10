@@ -37,6 +37,10 @@ form > *, form > fieldset > * {
     box-sizing: border-box;
 }
 
+input[type="number"] {
+    text-align: right;
+}
+
 label, p {
     padding-left: 4px;
     padding-right: 4px;
@@ -59,7 +63,16 @@ label > * {
     float: right;
 }
 
+.l {
+    float: left;
+}
+
 .c {
     float: none;
     clear: both;
 }
+
+.d {
+    margin-bottom: 4px;
+}
+

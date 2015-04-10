@@ -1,0 +1,7 @@
+.date > * {
+    box-sizing: border-box;
+}
+
+.date {
+    padding: 0px;
+}
