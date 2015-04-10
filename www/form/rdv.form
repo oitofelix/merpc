@@ -11,23 +11,15 @@
   </label>
   <fieldset id="periodo">
     <legend>Período</legend>
-    <!-- <label style="width: 50%">Início -->
-    <!--   <input id="inicio" disabled="disabled" type="date" /></label> -->
-
     <fieldset id="inicio" class="date l" style="width: 49%">
       <legend>Início</legend>
     </fieldset>
-
-    <!-- <label style="width: 50%">Fim -->
-    <!--   <input id="fim" disabled="disabled"type="date"></label> -->
     <fieldset id="fim" class="date r" style="width: 49%">
       <legend>Fim</legend>
     </fieldset>
-
   </fieldset>
   <fieldset id="NFCupom">
     <legend>NF/Cupom</legend>
-    <!-- <label style="width: 50%">Data<input id="data" type="date" /></label> -->
     <fieldset id="data" class="date l" style="width: 49%">
       <legend>Data</legend>
     </fieldset>
