@@ -4,7 +4,7 @@ widget.date = {
     loadCSS ('widget/date.css')
 
     // Day
-    var dayHTML = '';
+    var dayHTML = '<option></option>';
     for (var i = 1; i <= 31; i++) {
       dayHTML += '<option value="' + i + '">' + ("00" + i).slice (-2)
 	+ '</option>';
@@ -14,14 +14,14 @@ widget.date = {
     var monthList = ['Janeiro', 'Fevereiro', 'Março', 'Abril',
 		     'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro',
 		     'Outubro', 'Novembro', 'Dezembro'];
-    var monthHTML = '';
+    var monthHTML = '<option></option>';
     for (var i = 0; i < monthList.length; i++) {
       monthHTML += '<option value="' + i + '">'
 	+ monthList[i] + '</option>'
     }
 
     // Year
-    var yearHTML = '';
+    var yearHTML = '<option></option>';
     for (var i = -1; i <= 1; i++) {
       yearHTML += '<option>' + (new Date ().getFullYear () + i)
 	+ '</option>'
@@ -53,7 +53,9 @@ widget.date = {
 	  var month = element.getElementsByClassName ("month")[0];
 	  var year = element.getElementsByClassName ("year")[0];
 
-	  return element.value = new Date (year.value, month.value, day.value);
+	  if (day.value && month.value && year.value) 
+	    element.value = new Date (year.value, month.value,
+				      day.value);
 	}
       }) (elements[i]), false);
       
@@ -65,7 +67,9 @@ widget.date = {
 	    var month = element.getElementsByClassName ("month")[0];
 	    var year = element.getElementsByClassName ("year")[0];
 	  
-	    return new Date (year.value, month.value, day.value);
+	    if (day.value && month.value && year.value)
+	      return new Date (year.value, month.value, day.value);
+	    else return undefined;
 	  };
 	}) (elements[i]),
 
@@ -75,9 +79,14 @@ widget.date = {
 	    var month = element.getElementsByClassName ("month")[0];
 	    var year = element.getElementsByClassName ("year")[0];
 
-	    day.value = date.getDate ();
-	    month.value = date.getMonth ();
-	    year.value = date.getFullYear ();
+	    if (date)
+	    {
+	      day.value = date.getDate ();
+	      month.value = date.getMonth ();
+	      year.value = date.getFullYear ();
+	    } else {
+	      day.value = month.value = year.value = '';
+	    }
 	  };
 	}) (elements[i]),});
 

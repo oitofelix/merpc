@@ -16,10 +16,9 @@ form.rdv = {
       this.periodo.node.style.display = "none";
 
       this.inicio.node = document.getElementById ('inicio');
-      this.inicio.node.disabled = true;
       this.fim.node = document.getElementById ('fim');
-      this.fim.node.disabled = true;
     }
+    
     // NFCupom
     {
       this.NFCupom.node = document.getElementById ('NFCupom');
@@ -78,6 +77,14 @@ form.rdv = {
 	if (this.value == "V") form.rdv.veiculo.node.style.display = "block";
 	else form.rdv.veiculo.node.style.display = "none";
 	form.rdv.data.node.onchange ();
+	if (this.value !== "R")
+	{
+	  form.rdv.inicio.node.disabled = true;
+	  form.rdv.fim.node.disabled = true;
+	} else {
+	  form.rdv.inicio.node.disabled = false;
+	  form.rdv.fim.node.disabled = false;
+	}
       } else {
 	form.rdv.periodo.node.style.display = "none";
 	form.rdv.NFCupom.node.style.display = "none";
@@ -123,8 +130,8 @@ form.rdv = {
   
   data: {
     onchange: function () {
-      if (form.rdv.tipoDespesa.node.value == "C"
-	  || form.rdv.tipoDespesa.node.value == "F") {
+      if (form.rdv.tipoDespesa.node.value === "C"
+	  || form.rdv.tipoDespesa.node.value === "F") {
 	if (form.rdv.data.node.value.getDate () < 21) {
 	  form.rdv.inicio.node.value = form.rdv.data.node.relative (-1, 21);
 	  form.rdv.fim.node.value = form.rdv.data.node.relative (0, 20);
@@ -132,7 +139,7 @@ form.rdv = {
 	  form.rdv.inicio.node.value = form.rdv.data.node.relative (0, 21);
 	  form.rdv.fim.node.value = form.rdv.data.node.relative (1, 20);  
 	}
-      } else {
+      } else if (form.rdv.tipoDespesa.node.value !== "R") {
 	form.rdv.inicio.node.value = form.rdv.data.node.relative (0, 1);
 	form.rdv.fim.node.value = form.rdv.data.node.relative (1, 0);
       }     
