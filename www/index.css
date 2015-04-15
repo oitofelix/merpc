@@ -42,7 +42,13 @@ input[type="number"] {
 }
 
 fieldset > input, fieldset > select {
-    margin-top: 8px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    box-sizing: border-box;
+}
+
+fieldset > label {
+    box-sizing: border-box;    
 }
 
 label, p {

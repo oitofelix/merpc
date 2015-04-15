@@ -18,7 +18,7 @@ form.rdv = {
       this.inicio.node = document.getElementById ('inicio');
       this.fim.node = document.getElementById ('fim');
     }
-    
+
     // NFCupom
     {
       this.NFCupom.node = document.getElementById ('NFCupom');
@@ -43,25 +43,38 @@ form.rdv = {
       this.quantidade.node.onchange = this.quantidade.onchange;
       this.quantidade.node.onchange ();
     }
-    
+
     // naturezaDespesa
     {
       this.naturezaDespesa.node = document.getElementById ('naturezaDespesa');
       this.naturezaDespesa.node.style.display = "none";
-      
+
       // tipoNatureza
       this.tipoNatureza.node = document.getElementById ('tipoNatureza');
       this.tipoNatureza.node.onchange = this.tipoNatureza.onchange;
+
+      // outraDespesa
+      this.outraDespesa.node = document.getElementById ('outraDespesa');
 
       // tipoNaturezaVeiculo
       this.tipoNaturezaVeiculo.node = document.getElementById ('tipoNaturezaVeiculo');
       this.tipoNaturezaVeiculo.node.onchange = this.tipoNaturezaVeiculo.onchange;
 
+      // quilometragem
+      this.quilometragem.node = document.getElementById ('quilometragem');
+
+      // kmInicial
+      this.kmInicial.node = document.getElementById ('kmInicial');
+      this.kmInicial.node.onchange = this.kmInicial.onchange;
+      this.kmInicial.node.onchange ();
+
+      // kmFinal
+      this.kmFinal.node = document.getElementById ('kmFinal');
+      this.kmFinal.node.onchange = this.kmFinal.onchange;
+      this.kmFinal.node.onchange ();
+
       // manutencao
       this.manutencao.node = document.getElementById ('manutencao');
-
-      // outraDespesa
-      this.outraDespesa.node = document.getElementById ('outraDespesa');
     }
 
     // observacoes
@@ -87,7 +100,7 @@ form.rdv = {
       if (this.value) {
 	form.rdv.periodo.node.style.display = "block";
 	form.rdv.NFCupom.node.style.display = "block";
-	form.rdv.NDocumento.node.focus ();
+	form.rdv.NDocumento.node.select ();
 
 	// naturezaDespesa
 	form.rdv.naturezaDespesa.node.style.display = "block";
@@ -95,12 +108,14 @@ form.rdv = {
 	{
 	  form.rdv.tipoNatureza.node.style.display = "none";
 	  form.rdv.outraDespesa.node.style.display = "none";
+	  form.rdv.quilometragem.node.style.display = "none";
 	  form.rdv.manutencao.node.style.display = "none";
 	  form.rdv.tipoNaturezaVeiculo.node.style.display = "block";
 	} else {
 	  form.rdv.outraDespesa.node.style.display = "none";
 	  form.rdv.tipoNaturezaVeiculo.node.style.display = "none";
 	  form.rdv.manutencao.node.style.display = "none";
+	  form.rdv.quilometragem.node.style.display = "none";
 	  form.rdv.tipoNatureza.node.style.display = "block";
 	}
 
@@ -126,7 +141,7 @@ form.rdv = {
 	form.rdv.NFCupom.node.style.display = "none";
 	form.rdv.naturezaDespesa.node.style.display = "none";
 	form.rdv.observacoes.node.style.display = "none";
-	form.rdv.veiculo.node.style.display = "none";	
+	form.rdv.veiculo.node.style.display = "none";
       }
     },
   },
@@ -163,7 +178,7 @@ form.rdv = {
       this.value = parseFloat(this.value).toFixed(4);
     },
   },
-  
+
   data: {
     onchange: function () {
       if (form.rdv.tipoDespesa.node.value === "C"
@@ -173,23 +188,23 @@ form.rdv = {
 	  form.rdv.fim.node.value = form.rdv.data.node.relative (0, 20);
 	} else {
 	  form.rdv.inicio.node.value = form.rdv.data.node.relative (0, 21);
-	  form.rdv.fim.node.value = form.rdv.data.node.relative (1, 20);  
+	  form.rdv.fim.node.value = form.rdv.data.node.relative (1, 20);
 	}
       } else if (form.rdv.tipoDespesa.node.value !== "R") {
 	form.rdv.inicio.node.value = form.rdv.data.node.relative (0, 1);
 	form.rdv.fim.node.value = form.rdv.data.node.relative (1, 0);
-      }     
+      }
     },
   },
 
   naturezaDespesa: {
   },
-  
+
   tipoNatureza: {
     onchange: function () {
       if (this.value === "O") {
 	form.rdv.outraDespesa.node.style.display = "block";
-	form.rdv.outraDespesa.node.focus ();
+	form.rdv.outraDespesa.node.select ();
       } else {
 	form.rdv.outraDespesa.node.style.display = "none";
       }
@@ -202,14 +217,37 @@ form.rdv = {
   tipoNaturezaVeiculo: {
     onchange: function () {
       if (this.value === "M") {
+	form.rdv.quilometragem.node.style.display = "none";
 	form.rdv.manutencao.node.style.display = "block";
-	form.rdv.manutencao.node.focus ();
+	form.rdv.manutencao.node.select ();
+      } else if (this.value === "C" || this.value === "T") {
+	form.rdv.manutencao.node.style.display = "none";
+	form.rdv.quilometragem.node.style.display = "block";
+	form.rdv.kmInicial.node.select ();
       } else {
 	form.rdv.manutencao.node.style.display = "none";
+	form.rdv.quilometragem.node.style.display = "none";
       }
     },
   },
-  
+
+  quilometragem: {
+  },
+
+  kmInicial: {
+    onchange: function () {
+      this.value = this.value || "0";
+      this.value = parseInt(this.value);
+    },
+  },
+
+  kmFinal: {
+    onchange: function () {
+      this.value = this.value || "0";
+      this.value = parseInt(this.value);
+    },
+  },
+
   manutencao: {
   },
 
@@ -221,7 +259,7 @@ form.rdv = {
 
   incluir: {
     onclick: function () {
-      
+
     },
   },
 

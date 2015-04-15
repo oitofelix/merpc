@@ -4,9 +4,9 @@
     <select id="tipoDespesa">
       <option></option>
       <option value="R">Reembolso</option>
-      <option value="C">Cartão Corporativo</option>
-      <option value="F">Fundo Fixo</option>
-      <option value="V">Ajuda de Custo de Veículo</option>
+      <option value="C">Cartão corporativo</option>
+      <option value="F">Fundo fixo</option>
+      <option value="V">Ajuda de custo de veículo</option>
     </select>
   </label>
   <fieldset id="periodo">
@@ -45,11 +45,18 @@
       <input id="outraDespesa" style="width: 100%" type="text" />
       <select id="tipoNaturezaVeiculo" style="width: 100%">
 	<option></option>
-	<option>Aluguel</option>
-	<option>Combustível</option>
-	<option>Troca de óleo</option>
+	<option value="A">Aluguel</option>
+	<option value="C">Combustível</option>
+	<option value="T">Troca de óleo</option>
 	<option value="M">Manutenção...</option>
       </select>
+      <fieldset id="quilometragem">
+	<legend>Quilometragem</legend>
+	<label style="width: 50%">Inicial
+	  <input id="kmInicial" type="number" step="1" /></label>
+	<label style="width: 50%">Final
+	  <input id="kmFinal" type="number" step="1" /></label>
+      </fieldset>
       <input id="manutencao" type="text" style="width: 100%" />
   </fieldset>
   <label id="observacoes" style="width: 100%">Observações
