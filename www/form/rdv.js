@@ -45,8 +45,18 @@ form.rdv = {
     }
     
     // naturezaDespesa
-    this.naturezaDespesa.node = document.getElementById ('naturezaDespesa');
-    this.naturezaDespesa.node.style.display = "none";
+    {
+      this.naturezaDespesa.node = document.getElementById ('naturezaDespesa');
+      this.naturezaDespesa.node.style.display = "none";
+
+      // tipoNatureza
+      this.tipoNatureza.node = document.getElementById ('tipoNatureza');
+      this.tipoNatureza.node.onchange = this.tipoNatureza.onchange;
+
+      // outraDespesa
+      this.outraDespesa.node = document.getElementById ('outraDespesa');
+      this.outraDespesa.node.style.display = "none";
+    }
 
     // observacoes
     this.observacoes.node = document.getElementById ('observacoes');
@@ -145,8 +155,22 @@ form.rdv = {
       }     
     },
   },
-  
+
   naturezaDespesa: {
+  },
+  
+  tipoNatureza: {
+    onchange: function () {
+      if (this.value === "O") {
+	form.rdv.outraDespesa.node.style.display = "block";
+	form.rdv.outraDespesa.node.focus ();
+      } else {
+	form.rdv.outraDespesa.node.style.display = "none";
+      }
+    },
+  },
+
+  outraDespesa: {
   },
   
   observacoes: {

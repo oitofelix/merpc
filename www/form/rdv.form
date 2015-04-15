@@ -31,19 +31,21 @@
     <label style="width: 50%">Quantidade
       <input id="quantidade" type="number" step="0.0001" /></label>
   </fieldset>
-  <label id="naturezaDespesa" style="width: 100%">Natureza da Despesa
-    <select>
+  <fieldset id="naturezaDespesa">
+    <legend>Natureza da Despesa</legend>
+    <label style="width: 100%">
+      <select id="tipoNatureza">
 	<option>Alimentação</option>
 	<option>Hospedagem</option>
-      </optgroup>
-      <optgroup label="Transporte">
 	<option>Veículo</option>
 	<option>Pedágio</option>
 	<option>Combustível</option>
-      </optgroup>
-      <option>Outros...</option>
-    </select>
-  </label>
+	<option value="O">Outra...</option>
+      </select>
+    </label>
+  <label style="width: 100%">
+    <input id="outraDespesa" type="text" /></label>
+  </fieldset>
   <label id="observacoes" style="width: 100%">Observações
     <textarea placeholder="Obs." spellcheck="true"></textarea>
   </label>
