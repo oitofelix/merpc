@@ -86,3 +86,6 @@ label > * {
     margin-bottom: 4px;
 }
 
+.tr {
+    text-align: right;
+}

@@ -24,12 +24,13 @@
       <legend>Data</legend>
     </fieldset>
     <label style="width: 50%" class="r">Nº Documento
-      <input id="NDocumento" type="text" maxlength="9" pattern="\d+"
-	     required="required" /></label>
+      <input id="NDocumento" class="tr" type="text" maxlength="9"
+	     placeholder="000000000" /></label>
     <label style="width: 50%">Valor
-      <input id="valor" type="number" step="0.01" /></label>
+      <input id="valor" type="number" step="0.01" placeholder="0.00"/></label>
     <label style="width: 50%">Quantidade
-      <input id="quantidade" type="number" step="0.0001" /></label>
+      <input id="quantidade" type="number" step="0.0001"
+	     placeholder="0.0000"/></label>
   </fieldset>
   <fieldset id="naturezaDespesa">
     <legend>Natureza da Despesa</legend>
@@ -37,7 +38,6 @@
 	<option></option>
 	<option>Alimentação</option>
 	<option>Hospedagem</option>
-	<option>Veículo</option>
 	<option>Pedágio</option>
 	<option>Combustível</option>
 	<option value="O">Outra...</option>
@@ -53,9 +53,9 @@
       <fieldset id="quilometragem">
 	<legend>Quilometragem</legend>
 	<label style="width: 50%">Inicial
-	  <input id="kmInicial" type="number" step="1" /></label>
+	  <input id="kmInicial" type="number" step="1" placeholder="0"/></label>
 	<label style="width: 50%">Final
-	  <input id="kmFinal" type="number" step="1" /></label>
+	  <input id="kmFinal" type="number" step="1" placeholder="0"/></label>
       </fieldset>
       <input id="manutencao" type="text" style="width: 100%" />
   </fieldset>
@@ -64,9 +64,10 @@
   </label>
   <fieldset id="veiculo">
     <legend>Veículo</legend>
-    <label style="width: 50%">Modelo<input id="veiculo" type="text" /></label>
+    <label style="width: 50%">Modelo
+      <input id="modelo" type="text" /></label>
     <label style="width: 50%">Placa
-      <input id="placa" type="text" maxlength="8" /></label>
+      <input id="placa" type="text" maxlength="8" placeholder="AAA-0000"/></label>
   </fieldset>
   <label style="width: 20%">
     <input id="incluir" type="button" value="Incluir" />
