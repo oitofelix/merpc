@@ -48,14 +48,20 @@ form.rdv = {
     {
       this.naturezaDespesa.node = document.getElementById ('naturezaDespesa');
       this.naturezaDespesa.node.style.display = "none";
-
+      
       // tipoNatureza
       this.tipoNatureza.node = document.getElementById ('tipoNatureza');
       this.tipoNatureza.node.onchange = this.tipoNatureza.onchange;
 
+      // tipoNaturezaVeiculo
+      this.tipoNaturezaVeiculo.node = document.getElementById ('tipoNaturezaVeiculo');
+      this.tipoNaturezaVeiculo.node.onchange = this.tipoNaturezaVeiculo.onchange;
+
+      // manutencao
+      this.manutencao.node = document.getElementById ('manutencao');
+
       // outraDespesa
       this.outraDespesa.node = document.getElementById ('outraDespesa');
-      this.outraDespesa.node.style.display = "none";
     }
 
     // observacoes
@@ -82,11 +88,30 @@ form.rdv = {
 	form.rdv.periodo.node.style.display = "block";
 	form.rdv.NFCupom.node.style.display = "block";
 	form.rdv.NDocumento.node.focus ();
+
+	// naturezaDespesa
 	form.rdv.naturezaDespesa.node.style.display = "block";
+	if (this.value === "V")
+	{
+	  form.rdv.tipoNatureza.node.style.display = "none";
+	  form.rdv.outraDespesa.node.style.display = "none";
+	  form.rdv.manutencao.node.style.display = "none";
+	  form.rdv.tipoNaturezaVeiculo.node.style.display = "block";
+	} else {
+	  form.rdv.outraDespesa.node.style.display = "none";
+	  form.rdv.tipoNaturezaVeiculo.node.style.display = "none";
+	  form.rdv.manutencao.node.style.display = "none";
+	  form.rdv.tipoNatureza.node.style.display = "block";
+	}
+
 	form.rdv.observacoes.node.style.display = "block";
+
+	// Veiculo
 	if (this.value == "V") form.rdv.veiculo.node.style.display = "block";
 	else form.rdv.veiculo.node.style.display = "none";
+
 	form.rdv.data.node.onchange ();
+
 	if (this.value !== "R")
 	{
 	  form.rdv.inicio.node.disabled = true;
@@ -95,6 +120,7 @@ form.rdv = {
 	  form.rdv.inicio.node.disabled = false;
 	  form.rdv.fim.node.disabled = false;
 	}
+
       } else {
 	form.rdv.periodo.node.style.display = "none";
 	form.rdv.NFCupom.node.style.display = "none";
@@ -172,7 +198,21 @@ form.rdv = {
 
   outraDespesa: {
   },
+
+  tipoNaturezaVeiculo: {
+    onchange: function () {
+      if (this.value === "M") {
+	form.rdv.manutencao.node.style.display = "block";
+	form.rdv.manutencao.node.focus ();
+      } else {
+	form.rdv.manutencao.node.style.display = "none";
+      }
+    },
+  },
   
+  manutencao: {
+  },
+
   observacoes: {
   },
 

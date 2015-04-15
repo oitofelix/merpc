@@ -33,8 +33,8 @@
   </fieldset>
   <fieldset id="naturezaDespesa">
     <legend>Natureza da Despesa</legend>
-    <label style="width: 100%">
-      <select id="tipoNatureza">
+      <select id="tipoNatureza" style="width: 100%">
+	<option></option>
 	<option>Alimentação</option>
 	<option>Hospedagem</option>
 	<option>Veículo</option>
@@ -42,17 +42,24 @@
 	<option>Combustível</option>
 	<option value="O">Outra...</option>
       </select>
-    </label>
-  <label style="width: 100%">
-    <input id="outraDespesa" type="text" /></label>
+      <input id="outraDespesa" style="width: 100%" type="text" />
+      <select id="tipoNaturezaVeiculo" style="width: 100%">
+	<option></option>
+	<option>Aluguel</option>
+	<option>Combustível</option>
+	<option>Troca de óleo</option>
+	<option value="M">Manutenção...</option>
+      </select>
+      <input id="manutencao" type="text" style="width: 100%" />
   </fieldset>
   <label id="observacoes" style="width: 100%">Observações
-    <textarea placeholder="Obs." spellcheck="true"></textarea>
+    <textarea spellcheck="true"></textarea>
   </label>
   <fieldset id="veiculo">
     <legend>Veículo</legend>
-    <label style="width: 50%">Tipo<input id="veiculo" type="text" /></label>
-    <label style="width: 50%">Placa<input id="placa" type="text" /></label>
+    <label style="width: 50%">Modelo<input id="veiculo" type="text" /></label>
+    <label style="width: 50%">Placa
+      <input id="placa" type="text" maxlength="8" /></label>
   </fieldset>
   <label style="width: 20%">
     <input id="incluir" type="button" value="Incluir" />

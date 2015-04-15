@@ -41,6 +41,10 @@ input[type="number"] {
     text-align: right;
 }
 
+fieldset > input, fieldset > select {
+    margin-top: 8px;
+}
+
 label, p {
     padding-left: 4px;
     padding-right: 4px;
