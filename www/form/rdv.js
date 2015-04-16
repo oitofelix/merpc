@@ -87,7 +87,7 @@ form.rdv = {
 
       // placa
       this.placa.node = document.getElementById ('placa');
-      this.placa.node.oninput = this.placa.oninput;
+      if (! platform.android) this.placa.node.oninput = this.placa.oninput;
     }
       
     // incluir

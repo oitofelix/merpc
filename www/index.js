@@ -62,3 +62,7 @@ function sendSoapRequest (service, method, soapRequest) {
   if (request.status === 200 ) return request.responseText;
   else throw new Error (request.statusText);
 }
+
+platform = {
+  android: navigator.userAgent.match(/Android/i) ? true : false,
+}
