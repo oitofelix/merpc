@@ -75,17 +75,12 @@ form.login = {
       if (form.login.user.node.value != 'debug'
 	  || form.login.password.node.value != 'debug')
       {
-	try {
-	  var loginInfo = ws.login.login (form.login.user.node.value, form.login.password.node.value)
-	}
-	catch (e) {
-	  alert (e);
-	  return;
-	}
+	var loginInfo = ws.login.login
+	  (form.login.user.node.value, form.login.password.node.value);
 
-	if (! loginInfo) {
-          alert ('Usuário ou senha inválidos');
-          return;
+	if (loginInfo.error) {
+	  alert (loginInfo.error);
+	  return;
 	}
 
 	document.getElementById("userID").style.display = "block";

@@ -16,9 +16,11 @@ ws.login = {
       '</soap:Body>' +
       '</soap:Envelope>';
 
+    var ret, response;
+    
     try {
-      var response = sendSoapRequest (ws.login.serviceURL, 'LOGIN', soapRequest);
-      var ret = {
+      response = sendSoapRequest (ws.login.serviceURL, 'LOGIN', soapRequest);
+      ret = {
 	filial: response.match(/<FILIAL>(.*?)<\/FILIAL>/)[1],
 	empresa: response.match(/<EMPRESA>(.*?)<\/EMPRESA>/)[1],
 	representante: response.match(/<REPRESENTANTE>(.*?)<\/REPRESENTANTE>/)[1],
@@ -27,9 +29,8 @@ ws.login = {
       return ret;
     }
     catch (e) {
-      return false;
+      ret = {error: e.match(/<faultstring>(.*?)<\/faultstring>/)[1]};
+      return ret;
     }
-
-  },
-
+  }
 }
