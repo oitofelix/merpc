@@ -87,7 +87,7 @@ form.rdv = {
 
       // placa
       this.placa.node = document.getElementById ('placa');
-      this.placa.node.onkeyup = this.placa.onkeyup;
+      this.placa.node.oninput = this.placa.oninput;
     }
       
     // incluir
@@ -387,10 +387,15 @@ form.rdv = {
   },
 
   placa: {
-    onkeyup: function (event) {
-      if (this.value.length === 3 
-	  && event.keyCode !== '\b'.charCodeAt (0)) this.value += '-'
+    oninput: function () {
+      if (this.value.length === 3
+	  && arguments.callee.lastValue.length
+	  < this.value.length) this.value += '-'
+      if (this.value.length === 4
+	  && this.value.charAt (3) !== '-')
+	this.value = this.value.slice (0, 3) + '-' + this.value.slice (3);
       this.value = this.value.toUpperCase ();
+      arguments.callee.lastValue = this.value;
     },
   },
   
