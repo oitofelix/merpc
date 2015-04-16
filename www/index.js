@@ -60,7 +60,8 @@ function sendSoapRequest (service, method, soapRequest) {
   request.setRequestHeader('SOAPAction', localStorage.wsURL + method);
   request.send(soapRequest);
   if (request.status === 200 ) return request.responseText;
-  else throw request.responseText;
+  else throw new Error
+    (request.responseText.match (/<faultstring>(.*?)<\/faultstring>/)[1]);
 }
 
 platform = {

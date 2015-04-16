@@ -29,7 +29,7 @@ ws.login = {
       return ret;
     }
     catch (e) {
-      ret = {error: e.match(/<faultstring>(.*?)<\/faultstring>/)[1]};
+      ret = {error: e.message};
       return ret;
     }
   }
