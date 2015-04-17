@@ -13,7 +13,6 @@ form.rdv = {
     // periodo
     {
       this.periodo.node = document.getElementById ('periodo');
-      this.periodo.node.style.display = 'none';
 
       this.inicio.node = document.getElementById ('inicio');
       this.fim.node = document.getElementById ('fim');
@@ -22,7 +21,6 @@ form.rdv = {
     // NFCupom
     {
       this.NFCupom.node = document.getElementById ('NFCupom');
-      this.NFCupom.node.style.display = 'none';
 
       // data
       this.data.node = document.getElementById ('data');
@@ -58,19 +56,22 @@ form.rdv = {
       this.tipoNaturezaVeiculo.node = document.getElementById ('tipoNaturezaVeiculo');
       this.tipoNaturezaVeiculo.node.onchange = this.tipoNaturezaVeiculo.onchange;
 
-      // quilometragem
-      this.quilometragem.node = document.getElementById ('quilometragem');
+      // itinerario
+      this.itinerario.node = document.getElementById ('itinerario');
 
-      // kmInicial
-      this.kmInicial.node = document.getElementById ('kmInicial');
-      this.kmInicial.node.onchange = this.kmInicial.onchange;
+      // origem
+      this.origem.node = document.getElementById ('origem');
+      this.origem.node.oninput = this.origem.oninput;
 
-      // kmFinal
-      this.kmFinal.node = document.getElementById ('kmFinal');
-      this.kmFinal.node.onchange = this.kmFinal.onchange;
+      // destino
+      this.destino.node = document.getElementById ('destino');
+      this.destino.node.oninput = this.destino.oninput;
 
       // manutencao
       this.manutencao.node = document.getElementById ('manutencao');
+
+      // cidade
+      this.cidade.node = document.getElementById ('cidade');
     }
 
     // observacoes
@@ -89,7 +90,7 @@ form.rdv = {
       this.placa.node = document.getElementById ('placa');
       if (! platform.android) this.placa.node.oninput = this.placa.oninput;
     }
-      
+
     // incluir
     this.incluir.node = document.getElementById ('incluir');
     this.incluir.node.onclick = this.incluir.onclick;
@@ -97,6 +98,9 @@ form.rdv = {
     // sair
     this.sair.node = document.getElementById ('sair');
     this.sair.node.onclick = this.sair.onclick;
+
+    // Update display
+    this.tipoDespesa.node.onchange ();
   },
 
   validate: function () {
@@ -106,11 +110,13 @@ form.rdv = {
       function normalizeBackground () {
 	element.style.backgroundColor = '';
 	element.removeEventListener ('change', normalizeBackground, false);
+	element.removeEventListener ('blur', normalizeBackground, false);
       }
 
       alert (message);
       element.style.backgroundColor = 'yellow';
       element.addEventListener ('change', normalizeBackground, false);
+      element.addEventListener ('blur', normalizeBackground, false);
       if (element.focus) element.focus ();
       if (element.select) element.select ();
       throw new Error ('Element not valid');
@@ -124,7 +130,7 @@ form.rdv = {
       {
 	if (! form.rdv.inicio.node.value)
 	  notValid ('Defina o início do período', form.rdv.inicio.node);
-	
+
 	if (! form.rdv.fim.node.value)
 	  notValid ('Defina o fim do período', form.rdv.fim.node);
 
@@ -170,46 +176,42 @@ form.rdv = {
 	       && ! form.rdv.manutencao.node.value)
 	  notValid ('Defina a natureza da despesa', form.rdv.manutencao.node);
 
-	if (form.rdv.tipoNaturezaVeiculo.node.value === 'C'
-	    || form.rdv.tipoNaturezaVeiculo.node.value === 'T') {
-
-	  if (! form.rdv.kmInicial.node.value)
-	    notValid ('Defina a quilometragem inicial',
-		      form.rdv.kmInicial.node);
-
-	  if (! (parseInt (form.rdv.kmInicial.node.value) >= 0))
-	    notValid ('Quilometragem inicial deve ser uma quantia não-negativa',
-		      form.rdv.kmInicial.node);
-
-	  if (! form.rdv.kmFinal.node.value)
-	    notValid ('Defina a quilometragem final',
-		      form.rdv.kmFinal.node);
-
-	  if (! (parseInt (form.rdv.kmFinal.node.value)
-		 > parseInt (form.rdv.kmInicial.node.value)))
-	    notValid ('Quilometragem final deve ser estritamente maior que a inicial',
-		      form.rdv.kmFinal.node);
-	}
-
 	if (! form.rdv.modelo.node.value)
 	  notValid ('Defina o modelo do veículo', form.rdv.modelo.node);
-	
+
 	if (! form.rdv.placa.node.value)
 	  notValid ('Defina a placa do veículo', form.rdv.placa.node);
 
 	if (! form.rdv.placa.node.value.match (/^[a-zA-Z]{3}-\d{4}$/))
 	  notValid ('Placa do veículo deve ser válida', form.rdv.placa.node);
-	
+
 
       } else {
+	if (form.rdv.tipoNaturezaVeiculo.node.value === 'C'
+	    || form.rdv.tipoNatureza.node.value === 'C') {
+
+	  if (! form.rdv.origem.node.value)
+	    notValid ('Defina a cidade de origem do itinerário',
+		      form.rdv.origem.node);
+
+	  if (! form.rdv.destino.node.value)
+	    notValid ('Defina a cidade de destino do itinerário',
+		      form.rdv.destino.node);
+	}
+
 	if (! form.rdv.tipoNatureza.node.value)
 	  notValid ('Defina a natureza da despesa', form.rdv.tipoNatureza.node);
+
+	if (form.rdv.tipoNatureza.node.value === 'H'
+	    && ! form.rdv.cidade.node.value)
+	  notValid ('Defina a cidade de hospedagem', form.rdv.cidade.node);
 
 	if (form.rdv.tipoNatureza.node.value === 'O'
 	    && ! form.rdv.outraDespesa.node.value)
 	  notValid ('Defina a natureza da despesa', form.rdv.outraDespesa.node);
+
       }
-	
+
 
     }
     catch (e) {
@@ -218,61 +220,73 @@ form.rdv = {
 
     return true;
   },
-  
+
   tipoDespesa: {
     onchange: function () {
+      form.rdv.periodo.display (false);
+      form.rdv.NFCupom.display (false);
+
+      // naturezaDespesa
+      form.rdv.naturezaDespesa.node.style.display = 'none';
+      form.rdv.tipoNatureza.node.style.display = 'none';
+      form.rdv.tipoNaturezaVeiculo.node.style.display = 'none';
+      form.rdv.itinerario.node.style.display = 'none';
+      form.rdv.outraDespesa.node.style.display = 'none';
+      form.rdv.manutencao.node.style.display = 'none';
+      form.rdv.cidade.node.style.display = 'none';
+
+      form.rdv.observacoes.node.style.display = 'none';
+      form.rdv.veiculo.node.style.display = 'none';
+
       if (this.value) {
-	form.rdv.periodo.node.style.display = 'block';
-	form.rdv.NFCupom.node.style.display = 'block';
-	form.rdv.NDocumento.node.select ();
-
-	// naturezaDespesa
+	form.rdv.periodo.display (true);
+	form.rdv.NFCupom.display (true);
 	form.rdv.naturezaDespesa.node.style.display = 'block';
-	if (this.value === 'V')
-	{
-	  form.rdv.tipoNatureza.node.style.display = 'none';
-	  form.rdv.outraDespesa.node.style.display = 'none';
-	  form.rdv.quilometragem.node.style.display = 'none';
-	  form.rdv.manutencao.node.style.display = 'none';
-	  form.rdv.tipoNaturezaVeiculo.node.style.display = 'block';
-	} else {
-	  form.rdv.outraDespesa.node.style.display = 'none';
-	  form.rdv.tipoNaturezaVeiculo.node.style.display = 'none';
-	  form.rdv.manutencao.node.style.display = 'none';
-	  form.rdv.quilometragem.node.style.display = 'none';
-	  form.rdv.tipoNatureza.node.style.display = 'block';
-	}
-
 	form.rdv.observacoes.node.style.display = 'block';
-
-	// Veiculo
-	if (this.value == 'V') form.rdv.veiculo.node.style.display = 'block';
-	else form.rdv.veiculo.node.style.display = 'none';
-
 	form.rdv.data.node.onchange ();
-
-	if (this.value !== 'R')
-	{
-	  form.rdv.inicio.node.disabled = true;
-	  form.rdv.inicio.node.style.backgroundColor = '';
-	  form.rdv.fim.node.disabled = true;
-	  form.rdv.fim.node.style.backgroundColor = '';
-	} else {
-	  form.rdv.inicio.node.disabled = false;
-	  form.rdv.fim.node.disabled = false;
-	}
-
-      } else {
-	form.rdv.periodo.node.style.display = 'none';
-	form.rdv.NFCupom.node.style.display = 'none';
-	form.rdv.naturezaDespesa.node.style.display = 'none';
-	form.rdv.observacoes.node.style.display = 'none';
-	form.rdv.veiculo.node.style.display = 'none';
       }
+
+      switch (this.value) {
+      case 'R':
+	form.rdv.periodo.habilita (true);
+	form.rdv.tipoNatureza.display (true);
+	break;
+      case 'C':
+	form.rdv.periodo.habilita (false);
+	form.rdv.tipoNatureza.display (true);
+	break;
+      case 'F':
+	form.rdv.periodo.habilita (false);
+	form.rdv.tipoNatureza.display (true);
+	break;
+      case 'V':
+	form.rdv.periodo.habilita (false);
+	form.rdv.veiculo.node.style.display = 'block';
+	form.rdv.tipoNaturezaVeiculo.display (true);
+	break;
+      default:
+	break;
+      }
+
+      form.rdv.NDocumento.node.select ();
     },
   },
 
   periodo: {
+    habilita: function (bool) {
+      if (bool)
+      {
+	form.rdv.inicio.node.disabled = false;
+	form.rdv.fim.node.disabled = false;
+      } else {
+	form.rdv.inicio.node.disabled = true;
+	form.rdv.inicio.node.style.backgroundColor = '';
+	form.rdv.fim.node.disabled = true;
+	form.rdv.fim.node.style.backgroundColor = '';
+      }
+    },
+
+    display: displayWidget,
   },
 
   inicio: {
@@ -282,6 +296,7 @@ form.rdv = {
   },
 
   NFCupom: {
+    display: displayWidget,
   },
 
   NDocumento: {
@@ -328,13 +343,29 @@ form.rdv = {
 
   tipoNatureza: {
     onchange: function () {
-      if (this.value === 'O') {
+      form.rdv.outraDespesa.node.style.display = 'none';
+      form.rdv.itinerario.node.style.display = 'none';
+      form.rdv.cidade.node.style.display = 'none';
+
+      switch (this.value) {
+      case 'O':
 	form.rdv.outraDespesa.node.style.display = 'block';
 	form.rdv.outraDespesa.node.select ();
-      } else {
-	form.rdv.outraDespesa.node.style.display = 'none';
+	break;
+      case 'H':
+	form.rdv.cidade.node.style.display = 'block';
+	form.rdv.cidade.node.select ();
+	break;
+      case 'C':
+	form.rdv.itinerario.node.style.display = 'block';
+	form.rdv.origem.node.select ();
+	break;
+      default:
+	break;
       }
     },
+
+    display: displayWidget,
   },
 
   outraDespesa: {
@@ -342,39 +373,45 @@ form.rdv = {
 
   tipoNaturezaVeiculo: {
     onchange: function () {
-      if (this.value === 'M') {
-	form.rdv.quilometragem.node.style.display = 'none';
+      form.rdv.itinerario.node.style.display = 'none';
+      form.rdv.manutencao.node.style.display = 'none';
+
+      switch (this.value) {
+      case 'M':
 	form.rdv.manutencao.node.style.display = 'block';
 	form.rdv.manutencao.node.select ();
-      } else if (this.value === 'C' || this.value === 'T') {
-	form.rdv.manutencao.node.style.display = 'none';
-	form.rdv.quilometragem.node.style.display = 'block';
-	form.rdv.kmInicial.node.select ();
-      } else {
-	form.rdv.manutencao.node.style.display = 'none';
-	form.rdv.quilometragem.node.style.display = 'none';
+	break;
+      case 'C':
+	form.rdv.itinerario.node.style.display = 'block';
+	form.rdv.origem.node.select ();
+	break;
+      default:
+	break;
       }
     },
+
+    display: displayWidget,
   },
 
-  quilometragem: {
+  itinerario: {
   },
 
-  kmInicial: {
-    onchange: function () {
-      if (this.value)
-	this.value = parseInt(this.value);
+  origem: {
+    oninput: function () {
+      this.value = this.value.toUpperCase ();
     },
   },
 
-  kmFinal: {
-    onchange: function () {
-      if (this.value)
-	this.value = parseInt(this.value);
+  destino: {
+    oninput: function () {
+      this.value = this.value.toUpperCase ();
     },
   },
 
   manutencao: {
+  },
+
+  cidade: {
   },
 
   observacoes: {
@@ -398,7 +435,7 @@ form.rdv = {
       arguments.callee.lastValue = this.value;
     },
   },
-  
+
   incluir: {
     onclick: function () {
       form.rdv.validate ();

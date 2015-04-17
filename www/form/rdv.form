@@ -36,13 +36,12 @@
     <legend>Natureza da Despesa</legend>
       <select id="tipoNatureza" style="width: 100%">
 	<option></option>
-	<option>Alimentação</option>
-	<option>Hospedagem</option>
-	<option>Pedágio</option>
-	<option>Combustível</option>
+	<option value="A">Alimentação</option>
+	<option value="H">Hospedagem</option>
+	<option value="P">Pedágio</option>
+	<option value="C">Combustível</option>
 	<option value="O">Outra...</option>
       </select>
-      <input id="outraDespesa" style="width: 100%" type="text" />
       <select id="tipoNaturezaVeiculo" style="width: 100%">
 	<option></option>
 	<option value="A">Aluguel</option>
@@ -50,14 +49,16 @@
 	<option value="T">Troca de óleo</option>
 	<option value="M">Manutenção...</option>
       </select>
-      <fieldset id="quilometragem">
-	<legend>Quilometragem</legend>
-	<label style="width: 50%">Inicial
-	  <input id="kmInicial" type="number" step="1" placeholder="0"/></label>
-	<label style="width: 50%">Final
-	  <input id="kmFinal" type="number" step="1" placeholder="0"/></label>
+      <fieldset id="itinerario">
+	<legend>Itinerário</legend>
+	<label style="width: 50%">Origem
+	  <input id="origem" type="text" maxlength="100" /></label>
+	<label style="width: 50%">Destino
+	  <input id="destino" type="text" maxlength="100" /></label>
       </fieldset>
-      <input id="manutencao" type="text" style="width: 100%" />
+      <input id="outraDespesa" style="width: 100%" type="text" maxlenght="100" />
+      <input id="manutencao" type="text" style="width: 100%" maxlength="100" />
+      <input id="cidade" style="width: 100%" type="text" maxlength="100" />
   </fieldset>
   <label id="observacoes" style="width: 100%">Observações
     <textarea spellcheck="true"></textarea>

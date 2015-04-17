@@ -64,6 +64,13 @@ function sendSoapRequest (service, method, soapRequest) {
     (request.responseText.match (/<faultstring>(.*?)<\/faultstring>/)[1]);
 }
 
+function displayWidget (bool) {
+  if (bool) {
+    this.node.style.display = 'block';
+    if (this.node.onchange) this.node.onchange ();
+  } else this.node.style.display = 'none';
+}
+
 platform = {
   android: navigator.userAgent.match(/Android/i) ? true : false,
 }
