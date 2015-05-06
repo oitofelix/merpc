@@ -1,26 +1,28 @@
-window.onload = main;
-
-form = {
-  // Forms list
-  list: ['login', 'environment', 'rdv', 'rep', 'rac', 'pv', 'cfg'],
-};
-
-// Load forms
-for (var i = 0; i < form.list.length; i++)
-  loadJS ('form/' + form.list[i] + '.js');
+onload = main;
 
 widget = {
   // Widgets list
-  list: ['date'],
+  list: ['Widget', 'Input', 'P', 'Select', 'Date',
+	 'TextArea', 'Browser'],
 };
 
 // Load widgets
 for (var i = 0; i < widget.list.length; i++)
   loadJS ('widget/' + widget.list[i] + '.js');
 
+form = {
+  // Forms list
+  list: ['Main', 'Login', 'Cfg', 'Ambientes', 'About', 'Itinerario',
+	 'Veiculo', 'Periodo', 'NFCupom', 'Rdv', 'Rep', 'Rac', 'Pv'],
+};
+
+// Load forms
+for (var i = 0; i < form.list.length; i++)
+  loadJS ('form/' + form.list[i] + '.js');
+
 ws = {
   // Web Services list
-  list: ['login'],
+  list: ['WebService', 'Login'],
 };
 
 // Load web services
@@ -28,7 +30,9 @@ for (var i = 0; i < ws.list.length; i++)
   loadJS ('ws/' + ws.list[i] + '.js');
 
 function main () {
-  form.login.load ();
+  document.body.style.textAlign = 'center';
+  Main = new form.Main ();
+  document.body.appendChild (Main.node);
 }
 
 function loadJS (url) {
@@ -51,24 +55,6 @@ function loadForm (name) {
   request.send (null);
   if (request.status !== 200) throw new Error (request.statusText);
   return request.responseText;
-}
-
-function sendSoapRequest (service, method, soapRequest) {
-  var request = new XMLHttpRequest();
-  request.open ('POST', localStorage.wsURL + service, false);
-  request.setRequestHeader('Content-Type', 'text/xml');
-  request.setRequestHeader('SOAPAction', localStorage.wsURL + method);
-  request.send(soapRequest);
-  if (request.status === 200 ) return request.responseText;
-  else throw new Error
-    (request.responseText.match (/<faultstring>(.*?)<\/faultstring>/)[1]);
-}
-
-function displayWidget (bool) {
-  if (bool) {
-    this.node.style.display = 'block';
-    if (this.node.onchange) this.node.onchange ();
-  } else this.node.style.display = 'none';
 }
 
 platform = {
