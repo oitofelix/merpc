@@ -38,10 +38,22 @@ form.Main = function () {
     .legendText ('Mobile ERP Client')
     .addWidget (that.login);
 
+  db = new libs.DB ();
+
+  that.rdvBrowser
+    .setDB (db)
+
+
+
+  // Function definitions
+
   function login (e) {
+    Main.LOGIN = e;
+
     that.empresa.value (e.EMPRESA);
     that.representante.value (e.REPRESENTANTE);
     that.removeWidget (this);
+
     that.addWidget (that.empresa, 'br',
 		    that.representante, 'br',
 		    that.ambientes);

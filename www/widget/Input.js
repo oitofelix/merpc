@@ -120,4 +120,12 @@ widget.Input.prototype = Object.create (widget.Widget.prototype, {
       this.value = this.value.toUpperCase ();
     }
   }},
+  disableImage: {value: function () {
+    this.input.style.opacity = '0.3';
+    return this;
+  }},
+  enableImage: {value: function () {
+    this.input.style.opacity = '';
+    return this;
+  }},
 });

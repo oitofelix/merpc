@@ -75,4 +75,18 @@ widget.Date.prototype = Object.create (widget.Widget.prototype, {
   focus: {value: function () {
     this.day.focus ();
   }},
+  toDBString: {value: function () {
+    if (this.value ())
+      return this.year.value ()
+      + ('00' + (+ this.month.value () + 1)).slice (-2)
+      + ('00' + this.day.value ()).slice (-2);
+    else return '';
+  }},
+  fromDBString: {value: function (value) {
+    var year = value.slice (0, 4);
+    var month = + value.slice (4, 6) - 1;
+    var day = value.slice (6);
+
+    this.value (new Date (year, month, day));
+  }},
 });

@@ -3,7 +3,7 @@ onload = main;
 widget = {
   // Widgets list
   list: ['Widget', 'Input', 'P', 'Select', 'Date',
-	 'TextArea', 'Browser'],
+	 'TextArea', 'Table', 'Browser'],
 };
 
 // Load widgets
@@ -28,6 +28,15 @@ ws = {
 // Load web services
 for (var i = 0; i < ws.list.length; i++)
   loadJS ('ws/' + ws.list[i] + '.js');
+
+libs = {
+  // Libraries list
+  list: ['DB'],
+};
+
+// Load libraries
+for (var i = 0; i < libs.list.length; i++)
+  loadJS ('libs/' + libs.list[i] + '.js');
 
 function main () {
   document.body.style.textAlign = 'center';

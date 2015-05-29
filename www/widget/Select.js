@@ -61,7 +61,14 @@ widget.Select.prototype = Object.create (widget.Widget.prototype, {
   }},
   value: {value: function (value) {
     if (value === undefined) return this.select.value;
+    var oldValue = this.select.value;
     this.select.value = value;
+    if (oldValue !== value) {
+      var onchange = document.createEvent ("event");
+      onchange.initEvent ('change', true, true);
+      this.select.dispatchEvent (onchange);
+    }
+
     return this;
   }},
   disabled: {value: function (value) {

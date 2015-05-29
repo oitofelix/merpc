@@ -75,6 +75,7 @@ form.Rdv = function () {
   };
 
   function periodo21 () {
+    if (! NFCupom.data.value ()) return;
     if (NFCupom.data.value ().getDate () < 21) {
       periodo.inicio.value (NFCupom.data.relative (-1, 21));
       periodo.fim.value (NFCupom.data.relative (0, 20));
@@ -85,6 +86,7 @@ form.Rdv = function () {
   }
 
   function periodo30 () {
+    if (! NFCupom.data.value ()) return;
     periodo.inicio.value (NFCupom.data.relative (0, 1));
     periodo.fim.value (NFCupom.data.relative (1, 0));
   }
@@ -131,13 +133,6 @@ form.Rdv.prototype = Object.create (widget.Widget.prototype, {
       despesa.validate (despesa.value (), 'Defina o tipo de despesa');
 
       if (despesa.value () === 'V') {
-	naturezaVeiculo.validate (naturezaVeiculo.value (),
-				  'Defina a natureza da despesa');
-
-	manutencao.validate (naturezaVeiculo.value () !== 'M'
-			     || manutencao.value (),
-			     'Defina a natureza da despesa');
-
 	modelo.validate (modelo.value (),
 			 'Defina o modelo do veículo');
 
@@ -147,6 +142,12 @@ form.Rdv.prototype = Object.create (widget.Widget.prototype, {
 	placa.validate (placa.value ().match (/^[a-zA-Z]{3}-\d{4}$/),
 			'Placa do veículo deve ser válida');
 
+	naturezaVeiculo.validate (naturezaVeiculo.value (),
+				  'Defina a natureza da despesa');
+
+	manutencao.validate (naturezaVeiculo.value () !== 'M'
+			     || manutencao.value (),
+			     'Defina a natureza da despesa');
       } else {
 
 
@@ -169,7 +170,7 @@ form.Rdv.prototype = Object.create (widget.Widget.prototype, {
 			   'Defina a natureza da despesa');
 
 	cidade.validate (natureza.value () !== 'H'
-			 || cidadte.value (),
+			 || cidade.value (),
 			 'Defina a cidade de hospedagem');
 
 	outra.validate (natureza.value () !== 'O' ||
@@ -218,4 +219,149 @@ form.Rdv.prototype = Object.create (widget.Widget.prototype, {
 
     return true;
   }},
+  recordObject: {value: function () {
+    obj = {};
+
+    put (obj,
+	 'FILIAL', Main.LOGIN.FILIAL, true,
+	 'DATINI', this.periodo.inicio.toDBString (), true,
+	 'DATFIM', this.periodo.fim.toDBString (), true,
+	 'TPDESP', this.despesa.value (), true,
+
+	 'NATDES', this.despesa.natureza.value (),
+	 this.despesa.value () && this.despesa.value () !== 'V',
+	 'NATDES', this.despesa.naturezaVeiculo.value (),
+	 this.despesa.value () && this.despesa.value () === 'V',
+
+	 'NATDMS', this.despesa.natureza.outra.value (),
+	 this.despesa.value () && this.despesa.value () !== 'V'
+	 && this.despesa.natureza.value () === 'O',
+	 'NATDMS', this.despesa.naturezaVeiculo.manutencao.value (),
+	 this.despesa.value () && this.despesa.value () === 'V'
+	 && this.despesa.naturezaVeiculo.value () === 'M',
+
+	 'NUMDOC', this.NFCupom.id.value (), true,
+	 'VLRDOC', this.NFCupom.valor.value (), true,
+	 'QTDDOC', this.NFCupom.quantidade.value (), true,
+
+	 'CIDADE', this.despesa.natureza.cidade.value (),
+	 this.despesa.value () && this.despesa.value () !== 'V'
+	 && this.despesa.natureza.value () === 'H',
+
+	 /* remover ? */
+	 'LITROS', this.NFCupom.quantidade.value (),
+	 this.despesa.value () && this.despesa.value () !== 'V'
+	 && this.despesa.natureza.value () === 'C',
+	 'LITROS', this.NFCupom.quantidade.value (),
+	 this.despesa.value () && this.despesa.value () === 'V'
+	 && this.despesa.naturezaVeiculo.value () === 'C',
+
+	 'OBS', this.observacoes.value (), true,
+	 'DATA', this.NFCupom.data.toDBString (), true,
+
+	 'CIDORI', this.despesa.natureza.itinerario.origem.value (),
+	 this.despesa.value () && this.despesa.value () !== 'V'
+	 && this.despesa.natureza.value () === 'C',
+	 'CIDORI', this.despesa.naturezaVeiculo.itinerario.origem.value (),
+	 this.despesa.value () && this.despesa.value () === 'V'
+	 && this.despesa.naturezaVeiculo.value () === 'C',
+
+	 'CIDDES', this.despesa.natureza.itinerario.destino.value (),
+	 this.despesa.value () && this.despesa.value () !== 'V'
+	 && this.despesa.natureza.value () === 'C',
+	 'CIDDES', this.despesa.naturezaVeiculo.itinerario.destino.value (),
+	 this.despesa.value () && this.despesa.value () === 'V'
+	 && this.despesa.naturezaVeiculo.value () === 'C');
+
+    return obj;
+
+    function put (obj, /* [ */ field, value, condition /* ] ...*/) {
+      for (var i = 1; i < arguments.length; i += 3) {
+	var field = arguments[i];
+	var value = arguments[i + 1];
+	var condition = arguments[i + 2];
+
+	if (condition) obj[field] = value ? value : '';
+      }
+
+      return obj;
+    }
+  }},
+  match: {value: function (dbObject) {
+    formObject = this.recordObject ();
+    var queryFields = this.constructor.QUERY_FIELDS;
+
+    for (var i = 0; i < queryFields.length; i++) {
+      if (formObject [queryFields[i]]
+	  && formObject [queryFields[i]]
+	  !== dbObject [queryFields[i]]) return false;
+    }
+
+    return true;
+  }},
+  clear: {value: function () {
+    this.despesa.value ('');
+    this.despesa.natureza.value ('');
+    this.despesa.veiculo.modelo.value ('');
+    this.despesa.veiculo.placa.value ('');
+    this.despesa.natureza.cidade.value ('');
+    this.despesa.natureza.itinerario.origem.value ('');
+    this.despesa.natureza.itinerario.destino.value ('');
+    this.despesa.naturezaVeiculo.itinerario.origem.value ('');
+    this.despesa.naturezaVeiculo.itinerario.destino.value ('');
+    this.despesa.natureza.outra.value ('');
+    this.despesa.naturezaVeiculo.value ('');
+    this.despesa.naturezaVeiculo.manutencao.value ('');
+    this.periodo.inicio.value ('');
+    this.periodo.fim.value ('');
+    this.NFCupom.data.value ('');
+    this.NFCupom.id.value ('');
+    this.NFCupom.valor.value ('');
+    this.NFCupom.quantidade.value ('');
+    this.observacoes.value ('');
+  }},
+  loadRecord: {value: function (value) {
+    this.clear ();
+    this.periodo.inicio.fromDBString (value.DATINI);
+    this.periodo.fim.fromDBString (value.DATFIM);
+    this.despesa.value (value.TPDESP);
+
+    if (this.despesa.value () !== 'V') {
+      this.despesa.natureza.value (value.NATDES);
+      if (this.despesa.natureza.value () === 'O')
+	this.despesa.natureza.outra.value (value.NATDMS);
+      if (this.despesa.natureza.value () === 'C') {
+	this.NFCupom.quantidade.value (value.LITROS);
+	this.despesa.natureza.itinerario.origem.value (value.CIDORI);
+	this.despesa.natureza.itinerario.destino.value (value.CIDDES);
+      }
+      if (this.despesa.natureza.value () === 'H')
+	this.despesa.natureza.cidade.value (value.CIDADE);
+    } else {
+      this.despesa.naturezaVeiculo.value (value.NATDES);
+      if (this.despesa.naturezaVeiculo.value () === 'M')
+	this.despesa.naturezaVeiculo.manutencao.value (value.NATDES)
+      if (this.despesa.naturezaVeiculo.value () === 'C') {
+	this.NFCupom.quantidade.value (value.LITROS);
+	this.despesa.naturezaVeiculo.itinerario.origem.value (value.CIDORI);
+	this.despesa.naturezaVeiculo.itinerario.destino.value (value.CIDDES);
+      }
+    }
+
+    this.NFCupom.id.value (value.NUMDOC);
+    this.NFCupom.valor.value (value.VLRDOC);
+    this.NFCupom.quantidade.value (value.QTDDOC);
+
+    this.observacoes.value (value.OBS);
+    this.NFCupom.data.fromDBString (value.DATA);
+  }},
+  focus: {value: function () {
+    this.despesa.focus ();
+  }},
 });
+
+form.Rdv.OBJECT_STORE = 'rdv';
+form.Rdv.QUERY_FIELDS = ['FILIAL', 'DATINI', 'DATFIM', 'TPDESP',
+			 'NATDES', 'NATDMS', 'NUMDOC', 'VLRDOC',
+			 'QTDDOC', 'CIDADE', 'LITROS', 'OBS', 'DATA',
+			 'CIDORI', 'CIDDES'];

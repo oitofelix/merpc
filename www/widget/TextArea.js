@@ -25,5 +25,10 @@ widget.TextArea.prototype = Object.create (widget.Widget.prototype, {
     if (value === undefined) return this.textArea.placeholder;
     else this.textArea.placeholder = value;
     return this
-  }}
+  }},
+  value: {value: function (value) {
+    if (value === undefined) return this.textArea.value;
+    this.textArea.value = value;
+    return this;
+  }},
 });
