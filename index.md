@@ -7,7 +7,7 @@ tags: >
   Cordova, HTML, CSS, JavaScript, Mobile, Web, ERP
 license: CC BY-SA 4.0
 layout: oitofelix-homepage
-#base: http://oitofelix.github.io
+base: http://oitofelix.github.io
 #base_local: http://localhost:4001
 ---
 <div id="markdown" markdown="1">
